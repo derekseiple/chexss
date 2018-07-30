@@ -1,4 +1,4 @@
 # chexss
 
-[Rules](rules/Rules.md) of the game can be found in the rules directory.
+[Rules](rules/RULES.md) of the game can be found in the rules directory.
 
