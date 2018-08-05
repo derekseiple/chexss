@@ -89,7 +89,7 @@ move would result in black not having any valid moves.
 
 <img src="example_silver_forced_to_move_king.png" alt="example_silver_forced_to_move_king" width="500px"/>
 
-#### Silver, though in check can force black to protect him
+#### Silver, though in check, can force black to protect him
 In this example white has just moved the bishop so that it is attacking the silver king.
 Unlike the first example, in this example the game is not automatically over since silver
 _does_ have a valid move, even though the move does not remove the check placed on it by white.
