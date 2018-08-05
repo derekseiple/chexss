@@ -66,14 +66,21 @@ _en passant_ is not possible.
 ## Check
 TODO
 
+(Rough sketch of procedure)
+
+* player must defend self if can, only if can't defend self can
+they rely on other player to defend
+
+
 ## End of game
 TODO
+
 
 
 ### Examples
 #### White check mates Silver
 In this example white has just moved the bishop so that it is attacking the silver king.
-Since silver moves after white, since silver is in chech and does not have any valid moves,
+Since silver moves after white, and since silver is in check and does not have any valid moves,
 the game is over with white the winner.
 
 <img src="example_white_checkmates_silver.png" alt="example_white_checkmates_silver" width="500px"/>
@@ -101,6 +108,27 @@ room for silver's king, as white would be able to capture silver's king on the n
 silver would ever get the change to move to safety.
 
 <img src="example_other_player_must_defend.gif" alt="example_other_player_must_defend" width="500px"/>
+
+#### Stolen Mate
+This example illustrates the care that must be taken due to the added complexity of having
+3 player. White moves their bishop putting black in check, but silver is next to move, not black,
+so the game is not over yet. Silver could move their king out of the way to make room for
+the black king to move to safety, but silver has an even better play. Silver moves thier
+bishop to block the attack of white's bishop. But now silver's bishop is attacking black's
+king with black to move. Black has no valid moves, is in check from silver's bishop; therefore
+silver wins by checkmate
+
+<img src="example_stolen_mate.gif" alt="example_stolen_mate" width="500px"/>
+
+#### A not quite stolen mate
+This example is very similar to the Stolen Mate example except black has another piece
+besides his king to move. This prevents silver from stealing the win. White puts black
+in check as before and silver tries to steal the mate by moving the bishop in place as before.
+The difference this time is, like a previous example, black has a valid move in moving his
+knight. White must then take the silver bishop and silver must move their king in order
+to provide a path to safety for black's king. Thus checkmate is avoided.
+
+<img src="example_not_stolen_mate.gif" alt="example_not_stolen_mate" width="500px"/>
 
 # Game Notation
 
