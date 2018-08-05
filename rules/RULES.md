@@ -94,10 +94,11 @@ In this example white has just moved the bishop so that it is attacking the silv
 Unlike the first example, in this example the game is not automatically over since silver
 _does_ have a valid move, even though the move does not remove the check placed on it by white.
 Silver is able to move it's solitary pawn, thus putting it on black to prevent the game from
-ending with a white win. After silver moves it's pawn, black now has 4 valid moves that it
-can choose from to extend the game as marked on the board with black dots. Black can either
-move it's king to give silver somewhere to move it's king, or black may move his knight in
-order to block the attack of white's bishop.
+ending with a white win. After silver moves it's pawn, black now has only 1 valid move; that is
+it must block the attack of white's bishop with his knight. Note that, since white is next to move
+after black, it is not sufficent for black to move his king out of the way in order to make
+room for silver's king, as white would be able to capture silver's king on the next move before
+silver would ever get the change to move to safety.
 
 <img src="example_other_player_must_defend.gif" alt="example_other_player_must_defend" width="500px"/>
 
