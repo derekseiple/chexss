@@ -24,15 +24,15 @@ class RbgColor:
 
     @property
     def red(self) -> int:
-        """TODO"""
+        """The red value of the color."""
         return self._red
     
     @property
     def green(self) -> int:
-        """TODO"""
+        """The green value of the color."""
         return self._green
     
     @property
     def blue(self) -> int:
-        """TODO"""
+        """The blue value of the color."""
         return self._blue
