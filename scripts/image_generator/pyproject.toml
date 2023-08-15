@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "image_gen"
+version = "0.1.0"
+description = "This is code that is used to generate images of the board and pieces."
+authors = ["Derek Seiple <derekseiple@gmail.com>"]
+packages = [
+    { include = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+Pillow = ">=9.0"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.910"
+types-requests = "^2.27.14"
+flake8 = "^4.0.1"
+coverage = "^6.3.2"
+typing-extensions = "^4.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
