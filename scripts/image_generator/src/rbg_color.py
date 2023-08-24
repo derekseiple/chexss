@@ -1,3 +1,9 @@
+"""
+rbg_color.py
+Copyright © 2023 Derek Seiple
+Licensed under Creative Commons BY-NC-SA 3.0. See license file.
+"""
+
 class RbgColor:
     """This class represents an RGB color."""
 
