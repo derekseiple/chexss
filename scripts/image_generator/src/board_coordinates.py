@@ -7,28 +7,61 @@ from typing import List
 
 
 class BoardCoordinate:
-    """This class represents a coordinate on the board. The coordinate is represented by a column and a row. Since the
-    board is hexagonal, the column and row are not independent, so not every combination of column and row is valid.
-
-    This class should not be instantiated directly. Instead, use the BoardCoordinates class to get a list of valid
-    coordinates.
+    """This class represents a coordinate on the board. There are several different coordinate systems that can be used
+    to represent a hex on a board. Many are discussed here: https://www.redblobgames.com/grids/hexagons/. We will use
+    both the cube and rectangular coordinate systems. The cube coordinate system is useful for calculating distances and
+    easily finding where pieces can move to. The rectangular coordinate system is useful for drawing the board. We wrap
+    both of these coordinate systems in this class, so we can easily convert between them as needed depending on the
+    use case.
     """
 
-    def __init__(self, col: int, row: int) -> None:
-        self._col = col
-        self._row = row
+    def __init__(
+        self,
+        q: int,
+        r: int
+    ) -> None:
+        """Constructor.
+
+        Parameters
+        ----------
+        q: int
+            The q coordinate of the hex.
+
+        r: int
+            The r coordinate of the hex.
+        """
+        # cube coordinates
+        self._q = q
+        self._r = r
+        self._s = -q - r
+
+        # rectangular coordinates
+        self._x = 2 * self._q + self._r
+        self._y = self._r
+
+    @property
+    def q(self) -> int:
+        return self._q
+
+    @property
+    def r(self) -> int:
+        return self._r
     
     @property
-    def col(self) -> int:
-        return self._col
+    def s(self) -> int:
+        return self._s
     
     @property
-    def row(self) -> int:
-        return self._row
+    def x(self) -> int:
+        return self._x
+
+    @property
+    def y(self) -> int:
+        return self._y
 
 
 class BoardCoordinates:
-    """This class represents the coordinates on the board. The coordinates property is a list of all the valid
+    """This class represents all of the coordinates on the board. The coordinates property is a list of all the valid
     coordinates for the given board size.
     """
 
@@ -44,22 +77,11 @@ class BoardCoordinates:
         
         # Generate the valid coordinates for the board.
         self._coordinates = []
-        for col in range(4 * self._dimension - 3):
-            for row in range(2 * self._dimension - 1):
-                if (self.__is_valid_coordinate(col, row)):
-                    self._coordinates.append(BoardCoordinate(col, row))
-
-    def __is_valid_coordinate(self, col: int, row: int) -> bool:
-        """Returns True if the given coordinate is valid coordinate on the board, False otherwise."""
-        return (
-            # The dimension are valid if the sum of the coordinates is even.
-            ((col + row) % 2) == ((self._dimension - 1) % 2) and
-            # The following four conditions trim the board to a hexagon.
-            col + row >= self._dimension - 1 and # trim bottom left
-            col + row <= 5 * (self._dimension - 1) and # trim top right
-            col - row >= -(self._dimension - 1) and # trim top left
-            col - row <= 3 * (self._dimension - 1) # trim bottom right
-        )
+        for q in range(-self._dimension + 1, self._dimension):
+            for r in range(-self._dimension + 1, self._dimension):
+                coord = BoardCoordinate(q, r)
+                if (abs(coord.s) < self._dimension):
+                    self._coordinates.append(coord)
 
     @property
     def coordinates(self) -> List[BoardCoordinate]:
