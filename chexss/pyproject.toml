@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "image_gen"
+name = "chexss"
 version = "0.1.0"
-description = "This is code that is used to generate images of the board and pieces."
+description = "This is code and utilities for generating images and logic for the game of Chexss."
 authors = ["Derek Seiple <derekseiple@gmail.com>"]
 packages = [
     { include = "src" }
@@ -10,6 +10,8 @@ packages = [
 [tool.poetry.dependencies]
 python = "~3.11"
 Pillow = ">=9.0"
+cairosvg = "^2.5.2"
+jupyter = "^1.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.910"
