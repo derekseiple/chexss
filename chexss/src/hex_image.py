@@ -5,7 +5,7 @@ Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image, ImageDraw
 from src.hex_meta import HexMeta
-from src.rbg_color import RbgColor
+from src.rgb_color import RgbColor
 
 
 class HexImage:
@@ -16,7 +16,7 @@ class HexImage:
     def __init__(
         self,
         meta: HexMeta,
-        color: RbgColor
+        color: RgbColor
     ) -> None:
         """Constructor.
 
@@ -25,7 +25,7 @@ class HexImage:
         meta: HexMeta
             The metadata about the hex.
 
-        color: RbgColor
+        color: RgbColor
             The color of the hex.
         """
         self._image = Image.new("RGBA", (meta.width, meta.height), (255, 255, 255, 0))

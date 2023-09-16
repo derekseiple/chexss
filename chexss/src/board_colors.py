@@ -3,7 +3,7 @@ board_colors.py
 Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
-from src.rbg_color import RbgColor
+from src.rgb_color import RgbColor
 
 
 class BoardColors:
@@ -11,21 +11,21 @@ class BoardColors:
 
     def __init__(
         self,
-        white: RbgColor,
-        silver: RbgColor,
-        black: RbgColor,
+        white: RgbColor,
+        silver: RgbColor,
+        black: RgbColor,
     ) -> None:
         """Constructor.
 
         Parameters
         ----------
-        white: RbgColor
+        white: RgbColor
             The color of the white hexes.
         
-        silver: RbgColor
+        silver: RgbColor
             The color of the silver hexes.
 
-        black: RbgColor
+        black: RgbColor
             The color of the black hexes.
         """
         self._white = white
@@ -36,19 +36,19 @@ class BoardColors:
     def CreateDefault() -> "BoardColors":
         """Create the default board colors."""
         return BoardColors(
-            white=RbgColor(255, 206, 158),
-            silver=RbgColor(232, 171, 111),
-            black=RbgColor(209, 139, 71)
+            white=RgbColor(255, 206, 158),
+            silver=RgbColor(232, 171, 111),
+            black=RgbColor(209, 139, 71)
         )
 
     @property
-    def white(self) -> RbgColor:
+    def white(self) -> RgbColor:
         return self._white
 
     @property
-    def silver(self) -> RbgColor:
+    def silver(self) -> RgbColor:
         return self._silver
     
     @property
-    def black(self) -> RbgColor:
+    def black(self) -> RgbColor:
         return self._black
