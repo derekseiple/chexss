@@ -1,10 +1,10 @@
 """
-rbg_color.py
+rgb_color.py
 Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 
-class RbgColor:
+class RgbColor:
     """This class represents an RGB color."""
 
     def __init__(
@@ -23,6 +23,10 @@ class RbgColor:
         self._green: int = green
         self._blue: int = blue
     
+    def __str__(self) -> str:
+        """Return the string representation of the color. This is useful for SVGs."""
+        return 'rgb({0}, {1}, {2})'.format(self._red, self._green, self._blue)
+        
     @property
     def rgb(self) -> tuple:
         """A tuple containing the red, green, and blue values."""
