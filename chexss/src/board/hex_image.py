@@ -4,8 +4,8 @@ Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image, ImageDraw
-from src.hex_meta import HexMeta
-from src.rgb_color import RgbColor
+from src.board.hex_meta import HexMeta
+from src.utils.rgb_color import RgbColor
 
 
 class HexImage:

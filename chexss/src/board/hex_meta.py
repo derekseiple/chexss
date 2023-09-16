@@ -4,7 +4,7 @@ Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from math import sqrt
-from src.math_utils import RoundToEven
+from src.utils.math_utils import RoundToEven
 
 
 class HexMeta:

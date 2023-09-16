@@ -4,11 +4,11 @@ Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image
-from src.board_coordinates import BoardCoordinates
-from src.board_colors import BoardColors
-from src.hex_image import HexImage
-from src.hex_meta import HexMeta
-from src.drawer_utils import board_coordinate_image_location
+from src.board.board_coordinates import BoardCoordinates
+from src.board.board_colors import BoardColors
+from src.board.hex_image import HexImage
+from src.board.hex_meta import HexMeta
+from src.board.drawer_utils import board_coordinate_image_location
 
 
 class BoardImage:

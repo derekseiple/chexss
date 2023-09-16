@@ -4,9 +4,9 @@ Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image, ImageDraw, ImageFont
-from src.board_coordinates import BoardCoordinate
-from src.hex_meta import HexMeta
-from src.board_coordinate_utils import get_algebraic_notation
+from src.board.board_coordinates import BoardCoordinate
+from src.board.hex_meta import HexMeta
+from src.board.board_coordinate_utils import get_algebraic_notation
 
 
 def coordinate_image_factory(

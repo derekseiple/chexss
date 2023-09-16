@@ -5,10 +5,10 @@ Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image
 from typing import List
-from src.board_coordinates import BoardCoordinate
+from src.board.board_coordinates import BoardCoordinate
 from src.pieces.piece import Piece
 from src.pieces.piece_color import PieceColor
-from src.hex_meta import HexMeta
+from src.board.hex_meta import HexMeta
 from src.pieces.rook_image import RookImage
 
 
