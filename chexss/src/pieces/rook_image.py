@@ -7,7 +7,7 @@ from textwrap import dedent
 from io import BytesIO
 from cairosvg import svg2png
 from PIL import Image
-from src.hex_meta import HexMeta
+from src.board.hex_meta import HexMeta
 
 
 class RookImage:

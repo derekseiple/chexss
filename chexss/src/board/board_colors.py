@@ -3,7 +3,7 @@ board_colors.py
 Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
-from src.rgb_color import RgbColor
+from src.utils.rgb_color import RgbColor
 
 
 class BoardColors:

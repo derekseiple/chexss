@@ -5,10 +5,10 @@ Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image
 from typing import Callable, List
-from src.hex_meta import HexMeta
-from src.board_image import BoardImage
-from src.board_coordinates import BoardCoordinate
-from src.drawer_utils import board_coordinate_image_location
+from src.board.hex_meta import HexMeta
+from src.board.board_image import BoardImage
+from src.board.board_coordinates import BoardCoordinate
+from src.board.drawer_utils import board_coordinate_image_location
 
 
 class BoardDrawer:
