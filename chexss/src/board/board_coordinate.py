@@ -1,9 +1,8 @@
 """
-board_coordinates.py
+board_coordinate.py
 Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
-from typing import List
 
 
 class BoardCoordinate:
@@ -39,6 +38,19 @@ class BoardCoordinate:
         self._x = 2 * self._q + self._r
         self._y = self._r
 
+    def __str__(self) -> str:
+        return "(q: {}, r: {})".format(self._q, self._r)
+
+    def __eq__(self, other: 'BoardCoordinate') -> bool:  # type: ignore [override]
+        return (
+            type(self) == type(other) and
+            self._q == other.q and
+            self._r == other.r
+        )
+
+    def __hash__(self) -> int:
+        return hash((self._q, self._r))
+
     @property
     def q(self) -> int:
         return self._q
@@ -46,11 +58,11 @@ class BoardCoordinate:
     @property
     def r(self) -> int:
         return self._r
-    
+
     @property
     def s(self) -> int:
         return self._s
-    
+
     @property
     def x(self) -> int:
         return self._x
@@ -58,31 +70,3 @@ class BoardCoordinate:
     @property
     def y(self) -> int:
         return self._y
-
-
-class BoardCoordinates:
-    """This class represents all of the coordinates on the board. The coordinates property is a list of all the valid
-    coordinates for the given board size.
-    """
-
-    def __init__(self, dimension: int) -> None:
-        """Constructor.
-
-        Parameters
-        ----------
-        dimension: int
-            The dimension of the board, ie the number of hexes on a side.
-        """
-        self._dimension = dimension
-        
-        # Generate the valid coordinates for the board.
-        self._coordinates = []
-        for q in range(-self._dimension + 1, self._dimension):
-            for r in range(-self._dimension + 1, self._dimension):
-                coord = BoardCoordinate(q, r)
-                if (abs(coord.s) < self._dimension):
-                    self._coordinates.append(coord)
-
-    @property
-    def coordinates(self) -> List[BoardCoordinate]:
-        return self._coordinates

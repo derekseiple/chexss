@@ -24,16 +24,16 @@ class PieceColor:
     def White() -> "PieceColor":
         return PieceColor(
             main_color=RgbColor(255, 255, 255),
-            accent_color=RgbColor(192,192,192)
+            accent_color=RgbColor(192, 192, 192)
         )
-    
+
     @staticmethod
     def Silver() -> "PieceColor":
         return PieceColor(
             main_color=RgbColor(192, 192, 192),
             accent_color=RgbColor(0, 0, 0)
         )
-    
+
     @staticmethod
     def Black() -> "PieceColor":
         return PieceColor(
@@ -44,7 +44,7 @@ class PieceColor:
     @property
     def main_color(self) -> RgbColor:
         return self._main_color
-    
+
     @property
     def accent_color(self) -> RgbColor:
         return self._accent_color

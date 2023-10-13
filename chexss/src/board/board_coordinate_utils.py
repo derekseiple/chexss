@@ -3,7 +3,7 @@ board_coordinate_utils.py
 Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
-from src.board.board_coordinates import BoardCoordinate
+from src.board.board_coordinate import BoardCoordinate
 
 
 def get_algebraic_notation(dimension: int, coordinate: BoardCoordinate) -> str:
