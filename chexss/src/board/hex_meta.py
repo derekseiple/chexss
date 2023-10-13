@@ -31,7 +31,7 @@ class HexMeta:
         self._height: int = 2 * RoundToEven(self._width / sqrt(3))
         self._vertical_step: int = 3 * int(self._height / 4)
         self._horizontal_step: int = int(self._width / 2)
-        coord_v_step: int = self._height / 4
+        coord_v_step: int = int(self._height / 4)
 
         # Calculate the coordinates of the hex
         self._coords = [
@@ -49,7 +49,7 @@ class HexMeta:
     def height(self) -> int:
         """The height of the hex in pixels."""
         return self._height
-    
+
     @property
     def width(self) -> int:
         """The width of the hex in pixels."""
@@ -61,13 +61,13 @@ class HexMeta:
         another hex is a multiple of the vertical_step.
         """
         return self._vertical_step
-    
+
     @property
     def horizontal_step(self) -> int:
         """The horizontal_step is the smallest distance so that the distance between the left side of one hex and the
         left side of another hex is a multiple of the horizontal_step."""
         return self._horizontal_step
-    
+
     @property
     def coords(self) -> list:
         """The coordinates of the hex used to draw the image."""

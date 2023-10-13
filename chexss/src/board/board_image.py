@@ -4,7 +4,7 @@ Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image
-from src.board.board_coordinates import BoardCoordinates
+from src.board.board import Board
 from src.board.board_colors import BoardColors
 from src.board.hex_image import HexImage
 from src.board.hex_meta import HexMeta
@@ -18,7 +18,7 @@ class BoardImage:
 
     def __init__(
         self,
-        dimension: int,
+        board: Board,
         hex_meta: HexMeta,
         board_colors: BoardColors = BoardColors.CreateDefault()
     ) -> None:
@@ -26,8 +26,8 @@ class BoardImage:
 
         Parameters
         ----------
-        dimension: int
-            The dimension of the board, ie the number of hexes on a side.
+        board: Board
+            The board to draw.
 
         hex_meta: HexMeta
             The metadata about the hexes.
@@ -35,7 +35,7 @@ class BoardImage:
         board_colors: BoardColors
             The color of the hexes used for the board.
         """
-        self._dimension = dimension
+        self._dimension = board.dimension
         self._hex_meta = hex_meta
         self._hexes = [
             HexImage(self._hex_meta, board_colors.white),
@@ -49,8 +49,7 @@ class BoardImage:
         self._image = Image.new("RGBA", (width, height), (255, 255, 255, 0))
 
         # Draw the board.
-        board_coords = BoardCoordinates(self._dimension)
-        for coord in board_coords.coordinates:
+        for coord in board.coordinates:
             self._image.alpha_composite(
                 self.__get_hex_image(coord.x),
                 board_coordinate_image_location(self._dimension, coord, hex_meta)

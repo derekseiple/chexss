@@ -21,7 +21,7 @@ class BoardColors:
         ----------
         white: RgbColor
             The color of the white hexes.
-        
+
         silver: RgbColor
             The color of the silver hexes.
 
@@ -48,7 +48,7 @@ class BoardColors:
     @property
     def silver(self) -> RgbColor:
         return self._silver
-    
+
     @property
     def black(self) -> RgbColor:
         return self._black

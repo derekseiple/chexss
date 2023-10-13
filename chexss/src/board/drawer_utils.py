@@ -4,7 +4,7 @@ Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from typing import Tuple
-from src.board.board_coordinates import BoardCoordinate
+from src.board.board_coordinate import BoardCoordinate
 from src.board.hex_meta import HexMeta
 
 
@@ -24,7 +24,7 @@ def board_coordinate_image_location(
 
     coordinate: BoardCoordinate
         The coordinate on the board to draw the image at.
-    
+
     hex_meta: HexMeta
         The metadata about the hexes.
     """

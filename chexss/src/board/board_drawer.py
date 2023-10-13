@@ -7,7 +7,7 @@ from PIL import Image
 from typing import Callable, List
 from src.board.hex_meta import HexMeta
 from src.board.board_image import BoardImage
-from src.board.board_coordinates import BoardCoordinate
+from src.board.board_coordinate import BoardCoordinate
 from src.board.drawer_utils import board_coordinate_image_location
 
 
@@ -15,7 +15,7 @@ class BoardDrawer:
     """This class is constructed with a BoardImage which is then used as a base to draw other images on top of it. The
     draw method below will then draw images on top of the board image at the given coordinates.
     """
-    
+
     def __init__(
         self,
         board_image: BoardImage,
@@ -36,7 +36,7 @@ class BoardDrawer:
             A function that takes 1) the dimension of the board, 2) the coordinate on the board where the image will go,
             and 3) the hex metadata that describes the hexes on the board. The function should return a Pillow image of
             the image to draw at the coordinate.
-        
+
         coordinates: List[BoardCoordinate]
             The coordinates on the board to draw the images at with the image factory.
         """
