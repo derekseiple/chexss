@@ -13,6 +13,8 @@ from src.pieces.piece_type import PieceType
 from src.board.hex_meta import HexMeta
 from src.pieces.king_image import KingImage
 from src.pieces.player import Player
+from src.board.direction_utils import all_direction_deltas
+from src.board.direction_iterator import DirectionIterator
 
 
 class King(Piece):
@@ -43,69 +45,27 @@ class King(Piece):
             raise Exception("The piece at the coordinate {} is not a king.".format(coord))
         player = piece_info.player
 
-        # Note we could do this in a loop for this specific piece, but this starts the pattern of how we will do it for
-        # other pieces. ie. we will have a set of directions and a loop for each direction until we hit a piece or the
-        # edge of the board. We will probably refactor later as we develop other pieces.
+        # Loop through all of the directions and add the valid moves to the set
         moves = set()
-
-        # +q direction
-        q_plus = BoardCoordinate(coord.q + 1, coord.r)
-        if self.__is_valid_location(q_plus, board_sate, player):
-            moves.add(q_plus)
-        # -q direction
-        q_minus = BoardCoordinate(coord.q - 1, coord.r)
-        if self.__is_valid_location(q_minus, board_sate, player):
-            moves.add(q_minus)
-        # +r direction
-        r_plus = BoardCoordinate(coord.q, coord.r + 1)
-        if self.__is_valid_location(r_plus, board_sate, player):
-            moves.add(r_plus)
-        # -r direction
-        r_minus = BoardCoordinate(coord.q, coord.r - 1)
-        if self.__is_valid_location(r_minus, board_sate, player):
-            moves.add(r_minus)
-        # +s direction
-        s_plus = BoardCoordinate(coord.q - 1, coord.r + 1)
-        if self.__is_valid_location(s_plus, board_sate, player):
-            moves.add(s_plus)
-        # -s direction
-        s_minus = BoardCoordinate(coord.q + 1, coord.r - 1)
-        if self.__is_valid_location(s_minus, board_sate, player):
-            moves.add(s_minus)
-
-        # +q -r direction (q+1 r-2)
-        q_plus_r_minus = BoardCoordinate(coord.q + 1, coord.r - 2)
-        if self.__is_valid_location(q_plus_r_minus, board_sate, player):
-            moves.add(q_plus_r_minus)
-        # -q +r direction (q-1 r+2)
-        q_minus_r_plus = BoardCoordinate(coord.q - 1, coord.r + 2)
-        if self.__is_valid_location(q_minus_r_plus, board_sate, player):
-            moves.add(q_minus_r_plus)
-        # +r -s direction (q+1, r+1)
-        r_plus_s_minus = BoardCoordinate(coord.q + 1, coord.r + 1)
-        if self.__is_valid_location(r_plus_s_minus, board_sate, player):
-            moves.add(r_plus_s_minus)
-        # -r +s direction (q-1, r-1)
-        r_minus_s_plus = BoardCoordinate(coord.q - 1, coord.r - 1)
-        if self.__is_valid_location(r_minus_s_plus, board_sate, player):
-            moves.add(r_minus_s_plus)
-        # +q -s direction (q+2, r-1)
-        q_plus_s_minus = BoardCoordinate(coord.q + 2, coord.r - 1)
-        if self.__is_valid_location(q_plus_s_minus, board_sate, player):
-            moves.add(q_plus_s_minus)
-        # -q +s direction (q-2, r+1)
-        q_minus_s_plus = BoardCoordinate(coord.q - 2, coord.r + 1)
-        if self.__is_valid_location(q_minus_s_plus, board_sate, player):
-            moves.add(q_minus_s_plus)
+        directions = all_direction_deltas()
+        for direction in directions:
+            it = DirectionIterator(coord, direction)
+            for _ in range(1):
+                next_coord = it.next()
+                if self.__is_valid_location(next_coord, board_sate, player):
+                    moves.add(next_coord)
 
         return moves
 
     def __is_valid_location(self, coord: BoardCoordinate, board_sate: BoardState, player: Player) -> bool:
         """Make sure the coordinate is on the board and does not contain a piece of the same player."""
-        # TODO: Make sure the coordinate is not in check
+        # TODO: Make sure the coordinate is not in check. We can come up with a method to see what pieces are attacking
+        # a particular coordinate once we have the logic of how each piece can move.
+
         # Make sure the coordinate is on the board
         if not board_sate.board.is_valid_coordinate(coord):
             return False
+
         # Make sure the coordinate does not contain a piece of the same player
         piece_info = board_sate.get_piece_info(coord)
         if piece_info is not None and piece_info.player == player:

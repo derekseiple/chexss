@@ -34,9 +34,7 @@ def board_coordinate_image_location(
     col: int = coordinate.x + (2 * (dimension - 1))
     row: int = coordinate.y + dimension - 1
 
-    # The board coordinates go from bottom to top, but the image coordinates go from top to bottom. So we need
-    # to flip the row coordinate.
     return (
         col * hex_meta.horizontal_step,
-        (2 * (dimension - 1) - row) * hex_meta.vertical_step
+        row * hex_meta.vertical_step
     )

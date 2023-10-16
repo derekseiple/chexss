@@ -17,6 +17,9 @@ def get_algebraic_notation(dimension: int, coordinate: BoardCoordinate) -> str:
     coordinate: BoardCoordinate
         The coordinate to get the algebraic notation for.
     """
+    # We convert from the doubled width coordinate system to the equivalent algebraic notation. The difference is that
+    # the y-coordinate increases from top to bottom, but in the algebraic notation it increases from bottom to top, so
+    # we need to flip the y-coordinate.
     col: int = coordinate.x + (2 * (dimension - 1))
-    row: int = coordinate.y + dimension - 1
+    row: int = dimension - 1 - coordinate.y
     return "{}{}".format(chr(ord('a') + col), row + 1)

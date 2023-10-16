@@ -34,7 +34,7 @@ class BoardCoordinate:
         self._r = r
         self._s = -q - r
 
-        # rectangular coordinates
+        # doubled width coordinates
         self._x = 2 * self._q + self._r
         self._y = self._r
 
