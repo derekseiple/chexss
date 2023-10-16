@@ -51,11 +51,28 @@ def cube_coordinate_image_factory(
         The metadata about the hexes.
     """
     img = Image.new("RGBA", (hex_meta.width, hex_meta.height), (255, 255, 255, 0))
+    margin = round(hex_meta.width / 16)
+    font = ImageFont.truetype("Arial Bold.ttf", int(0.2 * hex_meta.height))
     draw = ImageDraw.Draw(img)
-    text = "q{}r{}".format(coordinate.q, coordinate.r)
-    font = ImageFont.truetype("Arial Bold.ttf", int(hex_meta.height / 4))
-    (_, _, text_w, text_h) = draw.textbbox((0, 0), text, font=font)
-    x = round((hex_meta.width - text_w) / 2)
-    y = round((hex_meta.height - text_h) / 2)
-    draw.text((x, y), text, fill=(0, 0, 0, 255), font=font)
+
+    q_text = "{}".format(coordinate.q)
+    r_text = "{}".format(coordinate.r)
+    s_text = "{}".format(coordinate.s)
+    if coordinate.q == 0 and coordinate.r == 0 and coordinate.s == 0:
+        q_text = "q"
+        r_text = "r"
+        s_text = "s"
+
+    qx = round(hex_meta.width / 4)
+    qy = round(hex_meta.height / 8)
+    draw.text((qx, qy), q_text, fill=(64, 128, 0, 255), font=font)
+
+    (_, _, r_w, r_h) = draw.textbbox((0, 0), r_text, font=font)
+    rx = round(hex_meta.width - r_w - margin)
+    ry = round((hex_meta.height - r_h) / 2)
+    draw.text((rx, ry), r_text, fill=(0, 119, 179, 255), font=font)
+
+    sx = qx
+    sy = round(5 * hex_meta.height / 8)
+    draw.text((sx, sy), s_text, fill=(184, 20, 184, 255), font=font)
     return img
