@@ -15,6 +15,7 @@ from src.pieces.king_image import KingImage
 from src.pieces.player import Player
 from src.board.direction_utils import all_direction_deltas
 from src.board.direction_iterator import DirectionIterator
+from src.pieces.move_utils import is_valid_move_location
 
 
 class King(Piece):
@@ -43,7 +44,7 @@ class King(Piece):
         # Make sure the piece is actually a king
         if piece_info.piece_type != PieceType.KING:
             raise Exception("The piece at the coordinate {} is not a king.".format(coord))
-        player = piece_info.player
+        player: Player = piece_info.player
 
         # Loop through all of the directions and add the valid moves to the set
         moves = set()
@@ -52,22 +53,9 @@ class King(Piece):
             it = DirectionIterator(coord, direction)
             for _ in range(1):
                 next_coord = it.next()
-                if self.__is_valid_location(next_coord, board_sate, player):
+                if is_valid_move_location(player, next_coord, board_sate):
+                    # TODO: Make sure the coordinate is not in check. We can come up with a method to see what pieces
+                    # are attacking a particular coordinate once we have the logic of how each piece can move.
                     moves.add(next_coord)
 
         return moves
-
-    def __is_valid_location(self, coord: BoardCoordinate, board_sate: BoardState, player: Player) -> bool:
-        """Make sure the coordinate is on the board and does not contain a piece of the same player."""
-        # TODO: Make sure the coordinate is not in check. We can come up with a method to see what pieces are attacking
-        # a particular coordinate once we have the logic of how each piece can move.
-
-        # Make sure the coordinate is on the board
-        if not board_sate.board.is_valid_coordinate(coord):
-            return False
-
-        # Make sure the coordinate does not contain a piece of the same player
-        piece_info = board_sate.get_piece_info(coord)
-        if piece_info is not None and piece_info.player == player:
-            return False
-        return True

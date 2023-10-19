@@ -51,7 +51,6 @@ def cube_coordinate_image_factory(
         The metadata about the hexes.
     """
     img = Image.new("RGBA", (hex_meta.width, hex_meta.height), (255, 255, 255, 0))
-    margin = round(hex_meta.width / 16)
     font = ImageFont.truetype("Arial Bold.ttf", int(0.2 * hex_meta.height))
     draw = ImageDraw.Draw(img)
 
@@ -68,11 +67,11 @@ def cube_coordinate_image_factory(
     draw.text((qx, qy), q_text, fill=(64, 128, 0, 255), font=font)
 
     (_, _, r_w, r_h) = draw.textbbox((0, 0), r_text, font=font)
-    rx = round(hex_meta.width - r_w - margin)
+    rx = round(15 * hex_meta.width / 16 - r_w)
     ry = round((hex_meta.height - r_h) / 2)
     draw.text((rx, ry), r_text, fill=(0, 119, 179, 255), font=font)
 
-    sx = qx
+    sx = round(hex_meta.width / 4)
     sy = round(5 * hex_meta.height / 8)
     draw.text((sx, sy), s_text, fill=(184, 20, 184, 255), font=font)
     return img
