@@ -79,7 +79,7 @@ class TestKing(unittest.TestCase):
         self.assertTrue(moves == expected_moves)
 
     def test_moves_with_other_pieces(self):
-        """We test that it properly identifies the edge of the board and does not go off the board."""
+        """We test that it properly where it can go when there are other pieces on the board."""
         board: Board = Board(7)
         king_coord: BoardCoordinate = BoardCoordinate(1, -4)
         board_state: BoardState = (
@@ -108,12 +108,7 @@ class TestKing(unittest.TestCase):
             BoardCoordinate(2, -4),
             BoardCoordinate(2, -3),
             BoardCoordinate(3, -5)))
-        for move in moves:
-            if move not in expected_moves:
-                print("move not in expected_moves: {}".format(move))
-        for move in expected_moves:
-            if move not in moves:
-                print("expected move not in moves: {}".format(move))
+
         self.assertTrue(moves == expected_moves)
 
     def test_moving_piece_that_doesnt_exist_fails(self):
