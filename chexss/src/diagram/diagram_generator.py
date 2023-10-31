@@ -1,17 +1,17 @@
 """
-board_drawer.py
+diagram_generator.py
 Copyright © 2023 Derek Seiple
 Licensed under Creative Commons BY-NC-SA 3.0. See license file.
 """
 from PIL import Image
-from typing import Callable, List
-from src.board.hex_meta import HexMeta
+from typing import List
+from src.diagram.image_factory import ImageFactory
 from src.board.board_image import BoardImage
 from src.board.board_coordinate import BoardCoordinate
-from src.board.drawer_utils import board_coordinate_image_location
+from src.board.board_coordinate_utils import board_coordinate_image_location
 
 
-class BoardDrawer:
+class DiagramGenerator:
     """This class is constructed with a BoardImage which is then used as a base to draw other images on top of it. The
     draw method below will then draw images on top of the board image at the given coordinates.
     """
@@ -25,17 +25,15 @@ class BoardDrawer:
 
     def draw(
         self,
-        image_factory: Callable[[int, BoardCoordinate, HexMeta], Image.Image],
+        image_factory: ImageFactory,
         coordinates: List[BoardCoordinate]
     ) -> None:
         """For each coordinate in the list, draw the image returned by the image factory at the coordinate on the board.
 
         Parameters
         ----------
-        image_factory: Callable[[int, BoardCoordinate, HexMeta], Image.Image]
-            A function that takes 1) the dimension of the board, 2) the coordinate on the board where the image will go,
-            and 3) the hex metadata that describes the hexes on the board. The function should return a Pillow image of
-            the image to draw at the coordinate.
+        image_factory: ImageFactory
+            The image factory to use to create the images to draw on the board.
 
         coordinates: List[BoardCoordinate]
             The coordinates on the board to draw the images at with the image factory.
