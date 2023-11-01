@@ -73,5 +73,9 @@ class BoardState:
         return self._piece_map.get(board_coordinate)
 
     @property
+    def piece_map(self) -> Dict[BoardCoordinate, PieceInfo]:
+        return self._piece_map
+
+    @property
     def board(self) -> Board:
         return self._board

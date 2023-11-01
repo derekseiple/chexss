@@ -8,7 +8,7 @@ from src.board.board import Board
 from src.board.board_colors import BoardColors
 from src.board.hex_image import HexImage
 from src.board.hex_meta import HexMeta
-from src.board.drawer_utils import board_coordinate_image_location
+from src.board.board_coordinate_utils import board_coordinate_image_location
 
 
 class BoardImage:
