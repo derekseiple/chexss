@@ -26,6 +26,22 @@ def is_valid_move_location(player: Player, coord: BoardCoordinate, board_sate: B
     return True
 
 
+def is_valid_capture_location(player: Player, coord: BoardCoordinate, board_sate: BoardState) -> bool:
+    """This is a utility function that is similar to is_valid_move_location. The difference here is that this function
+    will return True if the coordinate contains a piece of the opposite player, but False if the coordinate is empty or
+    contains a piece of the same player."""
+
+    # Make sure the coordinate is on the board
+    if not board_sate.board.is_valid_coordinate(coord):
+        return False
+
+    # Make sure the coordinate contains an enemy piece
+    piece_info = board_sate.get_piece_info(coord)
+    if piece_info is not None and piece_info.player != player:
+        return True
+    return False
+
+
 def location_is_occupied(coord: BoardCoordinate, board_sate: BoardState) -> bool:
     """This is a utility function that checks if the given coordinate is occupied by a piece."""
     piece_info = board_sate.get_piece_info(coord)

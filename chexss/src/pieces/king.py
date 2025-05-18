@@ -12,7 +12,6 @@ from src.pieces.piece_color import PieceColor
 from src.pieces.piece_type import PieceType
 from src.board.hex_meta import HexMeta
 from src.pieces.king_image import KingImage
-from src.pieces.player import Player
 from src.board.direction_utils import all_direction_deltas
 from src.board.direction_iterator import DirectionIterator
 from src.pieces.move_utils import is_valid_move_location
@@ -33,18 +32,11 @@ class King(Piece):
     def moves(
         self,
         coord: BoardCoordinate,
-        board_sate: BoardState
+        board_state: BoardState
     ) -> Set[BoardCoordinate]:
         """The king can move in any direction, but only one space at a time and only if the space does not contain
         another piece of the same player."""
-        # Check if the coordinate is on the board has a piece and get the color of the piece
-        piece_info = board_sate.get_piece_info(coord)
-        if piece_info is None:
-            raise Exception("There is no piece at coordinate {}.".format(coord))
-        # Make sure the piece is actually a king
-        if piece_info.piece_type != PieceType.KING:
-            raise Exception("The piece at the coordinate {} is not a king.".format(coord))
-        player: Player = piece_info.player
+        player = Piece.get_player_and_validate_piece_type(coord, board_state, PieceType.KING)
 
         # Loop through all of the directions and add the valid moves to the set
         moves = set()
@@ -53,7 +45,7 @@ class King(Piece):
             it = DirectionIterator(coord, direction)
             for _ in range(1):
                 next_coord = it.next()
-                if is_valid_move_location(player, next_coord, board_sate):
+                if is_valid_move_location(player, next_coord, board_state):
                     # TODO: Make sure the coordinate is not in check. We can come up with a method to see what pieces
                     # are attacking a particular coordinate once we have the logic of how each piece can move.
                     moves.add(next_coord)
