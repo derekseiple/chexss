@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from src.board.board_coordinate import BoardCoordinate
 from src.board.hex_meta import HexMeta
 from src.diagram.image_factory import ImageFactory
-from src.board.board_coordinate_utils import get_algebraic_notation
+from src.board.coordinate_converter import CoordinateConverter
 
 
 class AlgebraicCoordinateImageFactory(ImageFactory):
@@ -21,7 +21,8 @@ class AlgebraicCoordinateImageFactory(ImageFactory):
     ) -> Image.Image:
         img = Image.new("RGBA", (hex_meta.width, hex_meta.height), (255, 255, 255, 0))
         draw = ImageDraw.Draw(img)
-        text = get_algebraic_notation(board_dimension, coordinate)
+        convert = CoordinateConverter(board_dimension)
+        text = str(convert.board_to_algebraic(coordinate))
         font = ImageFont.truetype("Arial Bold.ttf", int(hex_meta.height / 4))
         (_, _, text_w, text_h) = draw.textbbox((0, 0), text, font=font)
         x = round((hex_meta.width - text_w) / 2)

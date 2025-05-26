@@ -39,7 +39,6 @@ class Pawn(Piece):
     ) -> Set[BoardCoordinate]:
         """The pawn can move "forward" one space if those spaces are empty. It can capture diagonally forward one space
         if those spaces are occupied by an enemy piece.
-        TODO: This does not yet handle promotion.
         """
         player = Piece.get_player_and_validate_piece_type(coord, board_state, PieceType.PAWN)
 
@@ -55,8 +54,8 @@ class Pawn(Piece):
                     board_state.board.is_valid_coordinate(next_coord) and
                     not location_is_occupied(next_coord, board_state)
                 ):
-                    # TODO: Make sure the move does not put the king in check.
                     moves.add(next_coord)
+        # the "capture" direction deltas likewise depend on the player
         capture_directions = self.__capture_direction_deltas(player)
         for direction in capture_directions:
             it = DirectionIterator(coord, direction)
@@ -64,7 +63,6 @@ class Pawn(Piece):
                 next_coord = it.next()
                 # The pawn can only capture if the space is occupied by an enemy piece
                 if is_valid_capture_location(player, next_coord, board_state):
-                    # TODO: Make sure the move does not put the king in check.
                     moves.add(next_coord)
 
         return moves

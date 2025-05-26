@@ -33,7 +33,9 @@ class Piece:
         coord: BoardCoordinate,
         board_sate: BoardState
     ) -> Set[BoardCoordinate]:
-        """Return the set of coordinates that this piece can move to from the given coordinate.
+        """Return the set of coordinates that this piece can move to from the given coordinate. This will only return
+        the set of coordinates that are valid based on the board state, but does not take into account the game rules
+        like castling, putting your own king in check, etc. Those determinations will be made as part of the game state.
 
         Parameters
         ----------
