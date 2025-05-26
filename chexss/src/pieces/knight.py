@@ -47,7 +47,6 @@ class Knight(Piece):
             for _ in range(1):
                 next_coord = it.next()
                 if is_valid_move_location(player, next_coord, board_state):
-                    # TODO: Make sure the move does not put the king in check.
                     moves.add(next_coord)
 
         return moves

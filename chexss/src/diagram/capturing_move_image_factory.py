@@ -10,7 +10,9 @@ from src.diagram.image_factory import ImageFactory
 
 
 class CapturingMoveImageFactory(ImageFactory):
-    """This class is used to create images for pieces on the board, based ont he given piece info."""
+    """This class is used to create an X image that can be used to indicate a capturing move, which can be layered on
+    top of an existing diagram.
+    """
 
     def __call__(
         self,

@@ -48,7 +48,6 @@ class Queen(Piece):
             it = DirectionIterator(coord, direction)
             next_coord = it.next()
             while is_valid_move_location(player, next_coord, board_state):
-                # TODO: Make sure the move does not put the king in check.
                 moves.add(next_coord)
                 if location_is_occupied(next_coord, board_state):
                     # If the location is occupied, we can't move past it so we break out of the loop

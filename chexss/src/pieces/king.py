@@ -46,8 +46,6 @@ class King(Piece):
             for _ in range(1):
                 next_coord = it.next()
                 if is_valid_move_location(player, next_coord, board_state):
-                    # TODO: Make sure the coordinate is not in check. We can come up with a method to see what pieces
-                    # are attacking a particular coordinate once we have the logic of how each piece can move.
                     moves.add(next_coord)
 
         return moves
